@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Cricket Learner AI teaches cricket from basics to expert level with role-based lessons, quizzes, mini games, and an AI cricket assistant." />
+    <meta name="keywords" content="Cricket Learner AI, cricket learning app, AI cricket coach, cricket lessons, cricket quiz, batting, bowling, all rounder training" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#18784d" />
+    <meta name="application-name" content="Cricket Learner AI" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Cricket Learner AI" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Cricket Learner AI" />
+    <meta property="og:title" content="Cricket Learner AI" />
+    <meta property="og:description" content="Learn cricket from basics to expert level with an AI coach, role-based lessons, quizzes, videos, mini games, and Pro Learning." />
+    <meta property="og:url" content="__PUBLIC_URL__/" />
+    <meta property="og:image" content="__PUBLIC_URL__/icons/icon-512.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cricket Learner AI" />
+    <meta name="twitter:description" content="A professional AI cricket learning app for batting, bowling, all-rounder training, quizzes, videos, and cricket history." />
+    <meta name="twitter:image" content="__PUBLIC_URL__/icons/icon-512.png" />
+    <title>Cricket Learner AI</title>
+    <link rel="canonical" href="__PUBLIC_URL__/" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icons/cricket-learner-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalApplication",
+        "name": "Cricket Learner AI",
+        "alternateName": ["Cricket AI Coach", "Cricket Learning App"],
+        "url": "__PUBLIC_URL__/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web, Android, iOS",
+        "description": "Cricket Learner AI teaches batting, bowling, all-rounder skills, cricket history, quizzes, mini games, videos, and AI-assisted doubt clearing.",
+        "offers": {
+          "@type": "Offer",
+          "price": "50",
+          "priceCurrency": "USD",
+          "description": "Optional Pro Learning subscription"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <section id="onboarding" class="onboarding" aria-label="Account setup">
+      <div class="onboarding-card" id="loginStep">
+        <div class="brand setup-brand">
+          <div class="brand-mark" aria-hidden="true">CL</div>
+          <div>
+            <p class="eyebrow">Cricket Learner</p>
+            <h1>Enter your email</h1>
+          </div>
+        </div>
+        <p class="setup-copy">Use your email to begin your cricket learning profile.</p>
+        <form id="loginForm" class="setup-form">
+          <label for="emailInput">Email address</label>
+          <input id="emailInput" type="email" autocomplete="email" required placeholder="you@example.com" />
+          <button class="primary-btn" type="submit">Next</button>
+        </form>
+      </div>
+
+      <div class="onboarding-card hidden" id="detailsStep">
+        <p class="eyebrow">Personal details</p>
+        <h1>Your name and mobile</h1>
+        <p class="setup-copy">Add your name and mobile number so the coach can personalize your learning profile.</p>
+        <form id="detailsForm" class="setup-form">
+          <label for="nameInput">Full name</label>
+          <input id="nameInput" type="text" autocomplete="name" required minlength="2" placeholder="Your full name" />
+          <label for="mobileInput">Mobile number</label>
+          <input id="mobileInput" type="tel" autocomplete="tel" required minlength="8" placeholder="Your mobile number" />
+          <button class="primary-btn" type="submit">Next</button>
+        </form>
+      </div>
+
+      <div class="onboarding-card hidden" id="profileStep">
+        <p class="eyebrow">Learner profile</p>
+        <h1>Create your account</h1>
+        <p class="setup-copy">Choose a username and password, like a normal app account setup.</p>
+        <form id="profileForm" class="setup-form">
+          <label for="usernameInput">Username</label>
+          <input id="usernameInput" type="text" autocomplete="username" required minlength="3" placeholder="Cricket name" />
+          <label for="trainingPasswordInput">Password</label>
+          <input id="trainingPasswordInput" type="password" autocomplete="new-password" required minlength="4" placeholder="Create password" />
+          <button class="primary-btn" type="submit">Next</button>
+        </form>
+      </div>
+
+      <div class="onboarding-card role-card hidden" id="roleStep">
+        <p class="eyebrow">Choose your path</p>
+        <h1>What type of player are you?</h1>
+        <div class="role-options">
+          <button class="role-option" type="button" data-role="allRounder" aria-pressed="false">
+            <strong>All-rounder</strong>
+            <span>Learn batting and bowling together.</span>
+          </button>
+          <button class="role-option" type="button" data-role="bowler" aria-pressed="false">
+            <strong>Bowler</strong>
+            <span>Master fast bowling, spin bowling, and bowling plans.</span>
+          </button>
+          <button class="role-option" type="button" data-role="batsman" aria-pressed="false">
+            <strong>Batsman</strong>
+            <span>Learn defence, drives, strokes, lofted shots, and shot selection.</span>
+          </button>
+        </div>
+        <button id="roleNextBtn" class="primary-btn" type="button" disabled>Next</button>
+      </div>
+
+      <div class="onboarding-card intro-card hidden" id="introStep">
+        <p class="eyebrow">AI coach intro</p>
+        <h1 id="introTitle">Welcome to Cricket Learner AI</h1>
+        <p id="introCopy" class="setup-copy"></p>
+        <div class="intro-actions">
+          <button id="playIntroBtn" class="secondary-btn" type="button">Play AI voice intro</button>
+          <button id="startLearningBtn" class="primary-btn" type="button">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="adminPanel" class="admin-panel-screen hidden" aria-label="Admin panel">
+      <div class="admin-login-card" id="adminLogin">
+        <p class="eyebrow">Owner only</p>
+        <h1>Owner verification</h1>
+        <p id="adminHelpText" class="setup-copy">Set your private owner name and password. The admin dashboard stays hidden until the owner password is correct.</p>
+        <form id="adminForm" class="setup-form">
+          <label for="adminNameInput">Owner name</label>
+          <input id="adminNameInput" type="text" autocomplete="username" required placeholder="Owner name" />
+          <label for="adminPasswordInput">Owner password</label>
+          <input id="adminPasswordInput" type="password" autocomplete="current-password" required placeholder="Owner password" />
+          <button class="primary-btn" type="submit">Verify owner</button>
+        </form>
+        <p id="adminError" class="form-error" aria-live="polite"></p>
+        <button id="adminBackBtn" class="admin-link" type="button">Back to learner app</button>
+      </div>
+
+      <div class="admin-dashboard hidden" id="adminDashboard">
+        <aside class="admin-side">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">AD</div>
+            <div>
+              <p class="eyebrow">Cricket Learner</p>
+              <h1>Admin</h1>
+            </div>
+          </div>
+          <button id="adminCloseBtn" class="text-btn quiet" type="button">Back to app</button>
+        </aside>
+        <main class="admin-main">
+          <section class="admin-hero">
+            <p class="eyebrow">Overview</p>
+            <h2>Learner and course control</h2>
+            <p>Monitor the current learner profile, role path, progress, videos, and assistant readiness from one professional admin page.</p>
+          </section>
+          <section class="admin-stats">
+            <article>
+              <span>Learner</span>
+              <strong id="adminLearnerName">No learner</strong>
+            </article>
+            <article>
+              <span>Role</span>
+              <strong id="adminRoleName">Not selected</strong>
+            </article>
+            <article>
+              <span>Lessons</span>
+              <strong id="adminLessonCount">0</strong>
+            </article>
+            <article>
+              <span>Progress</span>
+              <strong id="adminProgress">0%</strong>
+            </article>
+            <article>
+              <span>Plan</span>
+              <strong id="adminPlan">Free</strong>
+            </article>
+          </section>
+          <section class="admin-grid">
+            <article class="admin-card">
+              <div class="section-heading">
+                <span>Learner profile</span>
+              </div>
+              <div id="adminProfileList" class="admin-list"></div>
+            </article>
+            <article class="admin-card">
+              <div class="section-heading">
+                <span>Course path</span>
+              </div>
+              <div id="adminCourseList" class="admin-list"></div>
+            </article>
+            <article class="admin-card">
+              <div class="section-heading">
+                <span>Admin actions</span>
+              </div>
+              <button id="adminResetProgressBtn" class="secondary-btn" type="button">Reset learner progress</button>
+              <button id="adminRemoveUserBtn" class="secondary-btn danger" type="button">Remove user for misuse</button>
+              <button id="adminResetAllBtn" class="secondary-btn danger" type="button">Clear learner data</button>
+            </article>
+            <article class="admin-card admin-removed-card">
+              <div class="section-heading">
+                <span>Removed users</span>
+              </div>
+              <div id="adminRemovedList" class="admin-list"></div>
+            </article>
+            <article class="admin-card admin-content-card">
+              <div class="section-heading">
+                <span>Admin-only learner content</span>
+              </div>
+              <div id="adminContentList" class="admin-list"></div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </section>
+
+    <div class="app-shell hidden">
+      <aside class="sidebar" aria-label="Learning navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">CL</div>
+          <div>
+            <p class="eyebrow">Cricket Learner</p>
+            <h1>AI Coach</h1>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <span id="usernameLabel">Learner</span>
+          <strong id="roleLabel">Choose role</strong>
+          <button id="installAppBtn" class="text-btn install-btn hidden" type="button">Install app</button>
+          <button id="adminAccessBtn" class="text-btn admin-access-btn hidden" type="button">Admin access</button>
+          <button id="changeRoleBtn" class="text-btn" type="button">Change role</button>
+          <button id="signOutBtn" class="text-btn quiet" type="button">Sign out</button>
+        </div>
+
+        <div class="progress-card">
+          <div class="progress-head">
+            <span>Learning progress</span>
+            <strong id="progressLabel">0%</strong>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </div>
+
+        <nav id="moduleNav" class="module-nav"></nav>
+      </aside>
+
+      <main class="lesson-panel">
+        <section class="hero" aria-label="Current lesson">
+          <div class="pitch-visual" aria-hidden="true">
+            <div class="boundary"></div>
+            <div class="pitch"></div>
+            <div class="crease top"></div>
+            <div class="crease bottom"></div>
+            <div class="ball"></div>
+            <div class="fielder f1"></div>
+            <div class="fielder f2"></div>
+            <div class="fielder f3"></div>
+            <div class="fielder f4"></div>
+          </div>
+          <div class="hero-copy">
+            <p id="levelTag" class="level-tag">Beginner</p>
+            <h2 id="lessonTitle">Welcome to Cricket Learner AI</h2>
+            <p id="lessonSummary">
+              Learn cricket step by step with an assistant that explains, tests, and coaches you from the first rule to match strategy.
+            </p>
+            <div class="match-strip" aria-label="Lesson signal">
+              <span>
+                <small>Coach mode</small>
+                <strong id="coachModeLabel">Foundations</strong>
+              </span>
+              <span>
+                <small>Momentum</small>
+                <strong id="momentumLabel">0%</strong>
+              </span>
+              <span>
+                <small>Next checkpoint</small>
+                <strong id="checkpointLabel">Start</strong>
+              </span>
+            </div>
+            <div class="hero-actions">
+              <button id="explainBtn" class="primary-btn" type="button">Explain this lesson</button>
+              <button id="quizBtn" class="secondary-btn" type="button">Quick quiz</button>
+              <button id="completeBtn" class="icon-btn" type="button" title="Mark lesson complete" aria-label="Mark lesson complete">✓</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="today-hub" aria-label="Today smart learning hub">
+          <article class="hub-card featured">
+            <p class="eyebrow">Smart Coach</p>
+            <strong id="hubFocus">Today's focus</strong>
+            <span id="hubAction">Your next action will appear here.</span>
+            <button id="askCoachPlanBtn" class="secondary-btn" type="button">Ask coach for plan</button>
+          </article>
+
+          <article class="hub-card">
+            <p class="eyebrow">Daily rhythm</p>
+            <strong id="hubStreak">Ready today</strong>
+            <span id="hubQuizStatus">Daily quiz is ready.</span>
+          </article>
+
+          <article class="hub-card">
+            <p class="eyebrow">Next best lesson</p>
+            <strong id="hubNextLesson">Cricket Foundations</strong>
+            <span id="hubNextSkill">Start with one clear skill.</span>
+            <button id="continueLessonBtn" class="secondary-btn" type="button">Continue lesson</button>
+          </article>
+
+          <article class="hub-card">
+            <p class="eyebrow">Learning plan</p>
+            <strong id="hubPlan">Free plan</strong>
+            <span id="hubPlanNote">Upgrade for faster clarity drills.</span>
+            <button id="jumpProBtn" class="secondary-btn" type="button">View Pro</button>
+          </article>
+        </section>
+
+        <section class="innovation-lab" aria-label="Stadium intelligence lab">
+          <div class="lab-heading">
+            <div>
+              <p class="eyebrow">Stadium Intelligence</p>
+              <h2>Cricket command center</h2>
+            </div>
+            <button id="refreshMissionBtn" class="secondary-btn" type="button">New mission</button>
+          </div>
+
+          <div class="lab-grid">
+            <article class="lab-panel mission-panel">
+              <div class="panel-topline">
+                <span>AI Mission</span>
+                <strong id="missionIntensity">Sharp</strong>
+              </div>
+              <h3 id="missionTitle">Daily skill mission</h3>
+              <p id="missionCopy">Your adaptive mission will appear here.</p>
+              <div class="mission-meter" aria-hidden="true">
+                <span id="missionMeter"></span>
+              </div>
+            </article>
+
+            <article class="lab-panel dna-panel">
+              <div class="panel-topline">
+                <span>Role DNA</span>
+                <strong id="dnaTitle">All-rounder</strong>
+              </div>
+              <div class="dna-orbit" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div id="roleTraits" class="trait-list"></div>
+            </article>
+
+            <article class="lab-panel pressure-panel">
+              <div class="panel-topline">
+                <span>Pressure Lab</span>
+                <strong id="pressureScore">0 / 0</strong>
+              </div>
+              <h3 id="pressureSituation">Match situation</h3>
+              <div id="pressureOptions" class="pressure-options"></div>
+              <p id="pressureFeedback" class="game-feedback" aria-live="polite"></p>
+              <button id="newPressureBtn" class="secondary-btn" type="button">New situation</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <article class="lesson-card">
+            <div class="section-heading">
+              <span>Lesson notes</span>
+              <button id="practiceBtn" class="text-btn" type="button">Practice prompt</button>
+            </div>
+            <div id="lessonBody" class="lesson-body"></div>
+          </article>
+
+          <article class="lesson-card compact">
+            <div class="section-heading">
+              <span>Skill ladder</span>
+            </div>
+            <div id="skillLadder" class="skill-ladder"></div>
+          </article>
+        </section>
+
+        <section id="assistant-chat" class="assistant-chat-section" aria-label="Chat with AI Assistant">
+          <div class="section-heading">
+            <span>Chat with AI Assistant</span>
+            <span class="source-note">Cricket-first doubt clearing</span>
+          </div>
+          <div class="main-chat-layout">
+            <div class="main-chat-intro">
+              <p class="eyebrow">AI Coach</p>
+              <h2>Ask cricket doubts instantly</h2>
+              <p>Use this space for batting, bowling, past matches, quiz doubts, fitness, study help, or any cricket learning question.</p>
+              <div class="quick-prompts main-chat-prompts" aria-label="Assistant suggestions">
+                <button class="quick-prompt" type="button" data-prompt="Make my cricket learning plan for today">Today plan</button>
+                <button class="quick-prompt" type="button" data-prompt="Explain this lesson in simple words">Explain lesson</button>
+                <button class="quick-prompt" type="button" data-prompt="Give me a cricket practice drill">Practice drill</button>
+                <button class="quick-prompt" type="button" data-prompt="Tell me a famous past cricket match story">Past match</button>
+              </div>
+            </div>
+
+            <div class="main-chat-console">
+              <div id="mainChatLog" class="chat-log main-chat-log" aria-live="polite"></div>
+              <div class="voice-strip" aria-label="AI assistant voice controls">
+                <span id="mainVoiceStatus">Voice mode off</span>
+                <button id="mainVoiceModeBtn" class="text-btn voice-btn" type="button">Voice mode</button>
+                <button id="mainVoiceAskBtn" class="text-btn voice-btn" type="button">Speak question</button>
+              </div>
+              <form id="mainChatForm" class="chat-form main-chat-form">
+                <label class="sr-only" for="mainChatInput">Ask the AI cricket assistant</label>
+                <textarea
+                  id="mainChatInput"
+                  rows="3"
+                  placeholder="Ask the AI assistant anything: cricket, school, fitness, app help, matches, history..."
+                ></textarea>
+                <button class="primary-btn" type="submit">Ask AI</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section class="video-section" aria-label="Videos">
+          <div class="section-heading">
+            <span>Videos</span>
+            <span class="source-note">Embedded YouTube coaching</span>
+          </div>
+          <div id="videoGrid" class="video-grid"></div>
+        </section>
+
+        <section class="past-matches-section" aria-label="Past match stories">
+          <div class="section-heading">
+            <span>Past Match Stories</span>
+            <span class="source-note">Learn from classics</span>
+          </div>
+          <div class="past-match-grid">
+            <article>
+              <strong>1983 World Cup Final</strong>
+              <span>India beat West Indies at Lord's. Lesson: belief, bowling discipline, and fielding pressure can change cricket history.</span>
+            </article>
+            <article>
+              <strong>2001 Kolkata Test</strong>
+              <span>Laxman and Dravid built a legendary comeback against Australia. Lesson: patience and partnerships can flip a match.</span>
+            </article>
+            <article>
+              <strong>2007 T20 World Cup Final</strong>
+              <span>India beat Pakistan in a tense final. Lesson: calm decisions matter most in pressure overs.</span>
+            </article>
+            <article>
+              <strong>2011 World Cup Final</strong>
+              <span>Dhoni finished with a six against Sri Lanka. Lesson: chase planning, composure, and finishing skills win finals.</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="pro-section" aria-label="Pro Learning">
+          <div class="pro-copy">
+            <p class="eyebrow">Pro Learning</p>
+            <h2>Professional coaching plan</h2>
+            <p>Learn faster with clearer explanations, shortcut lesson paths, simple step-by-step coaching, and focused practice plans.</p>
+          </div>
+          <div class="pro-price-card">
+            <span id="proStatus">Free plan</span>
+            <strong>$50/month</strong>
+            <small id="proPaymentLabel">Pay securely with Razorpay</small>
+            <button id="proToggleBtn" class="primary-btn" type="button">Upgrade to Pro</button>
+          </div>
+        </section>
+
+        <section id="proContent" class="pro-content-section locked" aria-label="Pro content">
+          <div class="section-heading">
+            <span>Pro coaching room</span>
+            <span id="proLockLabel" class="source-note">Locked</span>
+          </div>
+          <div class="pro-grid">
+            <article>
+              <strong>Fast clarity lessons</strong>
+              <span>Every topic is broken into what it means, why it matters, what to watch, and what to practise first.</span>
+            </article>
+            <article>
+              <strong>Shortcut drill planner</strong>
+              <span>Use short drills that teach the fastest improvement points for batting, bowling, and all-round skills.</span>
+            </article>
+            <article>
+              <strong>Clear AI explanations</strong>
+              <span>Ask doubts and get simpler examples, common mistakes, and next actions instead of long theory.</span>
+            </article>
+          </div>
+        </section>
+
+        <section id="daily-quiz" class="quiz-center-section" aria-label="Quiz Center">
+          <div class="section-heading">
+            <span>Quiz Center</span>
+            <span class="source-note">Daily and weekly practice</span>
+          </div>
+          <div class="quiz-center-grid">
+            <article class="quiz-card">
+              <p class="eyebrow">Every day</p>
+              <h3>Daily Quiz <span>5 questions, 10 marks</span></h3>
+              <p id="dailyQuizPrompt">Five quick cricket questions for today.</p>
+              <div id="dailyQuizOptions" class="game-options"></div>
+              <p id="dailyQuizFeedback" class="game-feedback" aria-live="polite"></p>
+              <strong id="dailyQuizStatus">Not attempted today</strong>
+            </article>
+
+            <article class="quiz-card">
+              <p class="eyebrow">Every week</p>
+              <h3>Weekly Quiz <span>15 questions, 30 marks</span></h3>
+              <p id="weeklyQuizPrompt">Fifteen deeper cricket questions for this week.</p>
+              <div id="weeklyQuizOptions" class="game-options"></div>
+              <p id="weeklyQuizFeedback" class="game-feedback" aria-live="polite"></p>
+              <strong id="weeklyQuizStatus">Not attempted this week</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="mini-games-section" aria-label="Mini Games">
+          <div class="section-heading">
+            <span>Mini Games</span>
+            <span class="source-note">Fast cricket challenges</span>
+          </div>
+          <div class="mini-games-grid">
+            <article class="game-card">
+              <div class="game-topline">
+                <p class="eyebrow">Batting</p>
+                <strong id="battingScore">0 / 0</strong>
+              </div>
+              <h3>Shot Selector</h3>
+              <p id="battingPrompt">Read the delivery and choose the best shot.</p>
+              <div id="battingOptions" class="game-options"></div>
+              <p id="battingFeedback" class="game-feedback" aria-live="polite"></p>
+              <button id="newBattingBallBtn" class="secondary-btn" type="button">New ball</button>
+            </article>
+
+            <article class="game-card">
+              <div class="game-topline">
+                <p class="eyebrow">Bowling</p>
+                <strong id="bowlingScore">0 / 0</strong>
+              </div>
+              <h3>Plan The Over</h3>
+              <p id="bowlingPrompt">Read the batter and match situation, then choose the best delivery.</p>
+              <div id="bowlingOptions" class="game-options"></div>
+              <p id="bowlingFeedback" class="game-feedback" aria-live="polite"></p>
+              <button id="newBowlingPlanBtn" class="secondary-btn" type="button">New plan</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="privacy-section" aria-label="Safety and privacy">
+          <div>
+            <p class="eyebrow">Safe app</p>
+            <h2>Privacy first learning</h2>
+          </div>
+          <p>
+            Learner email, mobile number, account details, progress, and chat content are never shown to other learners. Only verified admin access can review learner content for safety and moderation.
+          </p>
+          <a class="privacy-link" href="privacy.html" target="_blank" rel="noopener">Privacy policy</a>
+        </section>
+      </main>
+
+      <aside id="coach" class="assistant-panel" aria-label="AI cricket assistant">
+        <div class="assistant-head">
+          <div>
+            <p class="eyebrow">Ask anything</p>
+            <h2>Cricket AI Assistant</h2>
+          </div>
+          <div class="assistant-actions">
+            <button id="voiceModeBtn" class="icon-btn voice-icon-btn" type="button" title="Voice mode" aria-label="Voice mode">Mic</button>
+            <button id="resetBtn" class="icon-btn" type="button" title="Reset progress and chat" aria-label="Reset progress and chat">↻</button>
+          </div>
+        </div>
+
+        <div id="chatLog" class="chat-log" aria-live="polite"></div>
+        <div class="voice-strip compact" aria-label="Coach voice controls">
+          <span id="voiceStatus">Voice mode off</span>
+          <button id="voiceAskBtn" class="text-btn voice-btn" type="button">Speak question</button>
+        </div>
+
+        <div class="quick-prompts" aria-label="Quick assistant prompts">
+          <button class="quick-prompt" type="button" data-prompt="Give me today's cricket learning plan">Today plan</button>
+          <button class="quick-prompt" type="button" data-prompt="Explain Dhoni's helicopter shot">Dhoni shot</button>
+          <button class="quick-prompt" type="button" data-prompt="Tell me about Rahul Dravid's best strokes">Dravid strokes</button>
+          <button class="quick-prompt" type="button" data-prompt="Teach me one famous past cricket match">Past match</button>
+        </div>
+
+        <form id="chatForm" class="chat-form">
+          <label class="sr-only" for="chatInput">Ask the cricket assistant</label>
+          <textarea
+            id="chatInput"
+            rows="3"
+            placeholder="Ask anything: cricket, study help, fitness, history, app doubts..."
+          ></textarea>
+          <button class="primary-btn" type="submit">Ask</button>
+        </form>
+      </aside>
+    </div>
+
+    <dialog id="quizDialog" class="quiz-dialog">
+      <form method="dialog">
+        <div class="quiz-head">
+          <h2>Quick quiz</h2>
+          <button class="icon-btn" value="close" title="Close quiz" aria-label="Close quiz">×</button>
+        </div>
+        <p id="quizQuestion" class="quiz-question"></p>
+        <div id="quizOptions" class="quiz-options"></div>
+        <p id="quizFeedback" class="quiz-feedback" aria-live="polite"></p>
+      </form>
+    </dialog>
+
+    <dialog id="razorpayDialog" class="quiz-dialog">
+      <form method="dialog">
+        <div class="quiz-head">
+          <h2>Razorpay Checkout</h2>
+          <button class="icon-btn" value="close" title="Close checkout" aria-label="Close checkout">×</button>
+        </div>
+        <p id="razorpayIntro" class="quiz-question">Pro Learning plan: $50/month. Continue with secure Razorpay checkout.</p>
+        <div class="payment-summary">
+          <div><span>Plan</span><strong>Pro Learning</strong></div>
+          <div><span>Amount</span><strong>$50 / month</strong></div>
+          <div><span>Billing</span><strong>Monthly</strong></div>
+          <div><span>Provider</span><strong>Razorpay</strong></div>
+        </div>
+        <button id="razorpaySuccessBtn" class="primary-btn" type="button">Pay with Razorpay</button>
+        <p id="razorpayNote" class="quiz-feedback">Live payments require backend order creation and payment signature verification.</p>
+      </form>
+    </dialog>
+
+    <script src="app-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

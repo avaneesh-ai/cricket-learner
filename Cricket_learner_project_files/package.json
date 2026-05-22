@@ -1,0 +1,49 @@
+{
+  "name": "cricket-learner-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Direct install cricket learning app with AI coaching, quizzes, mini games, Pro Learning hooks, and admin moderation flow.",
+  "main": "macos/electron/main.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check app-config.js && node --check app.js && node --check sw.js && node --check server.js && node --check macos/electron/main.js && node --check macos/electron/preload.js && node -e \"for (const f of ['manifest.webmanifest','play-store/twa-manifest.template.json','play-store/assetlinks.template.json']) JSON.parse(require('fs').readFileSync(f, 'utf8'))\"",
+    "play:check": "npm run check",
+    "android:check": "node -e \"for (const f of ['manifest.webmanifest','play-store/twa-manifest.template.json','play-store/assetlinks.template.json']) JSON.parse(require('fs').readFileSync(f, 'utf8')); console.log('Android package templates OK')\"",
+    "mac:dev": "electron .",
+    "mac:build": "electron-builder --mac dmg zip"
+  },
+  "build": {
+    "appId": "com.cricketlearner.ai.macos",
+    "productName": "Cricket Learner AI",
+    "copyright": "Copyright © 2026 Cricket Learner AI",
+    "asar": true,
+    "files": [
+      "index.html",
+      "privacy.html",
+      "styles.css",
+      "app.js",
+      "app-config.js",
+      "manifest.webmanifest",
+      "sw.js",
+      "server.js",
+      "icons/**/*",
+      "macos/electron/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "target": ["dmg", "zip"],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "macos/electron/entitlements.mac.plist",
+      "entitlementsInherit": "macos/electron/entitlements.mac.plist"
+    },
+    "dmg": {
+      "artifactName": "Cricket-Learner-AI-${version}-mac.${ext}"
+    }
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.0"
+  }
+}

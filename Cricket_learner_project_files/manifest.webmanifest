@@ -1,0 +1,62 @@
+{
+  "name": "Cricket Learner AI",
+  "short_name": "Cricket AI",
+  "description": "Learn cricket from basics to expert level with role-based AI coaching, quizzes, mini games, Pro Learning, and past match stories.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#edf4ef",
+  "theme_color": "#18784d",
+  "categories": ["education", "sports"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/cricket-learner-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Daily Quiz",
+      "short_name": "Quiz",
+      "description": "Open Cricket Learner AI and take today's cricket quiz.",
+      "url": "./index.html#daily-quiz",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "AI Coach",
+      "short_name": "Coach",
+      "description": "Ask the cricket AI assistant a doubt.",
+      "url": "./index.html#coach",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

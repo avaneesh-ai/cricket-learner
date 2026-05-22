@@ -1,0 +1,37 @@
+{
+  "packageId": "com.cricketlearner.ai",
+  "host": "REPLACE_WITH_YOUR_DOMAIN",
+  "name": "Cricket Learner AI",
+  "launcherName": "Cricket AI",
+  "display": "standalone",
+  "themeColor": "#18784d",
+  "themeColorDark": "#0d5638",
+  "navigationColor": "#0d5638",
+  "navigationColorDark": "#0d5638",
+  "backgroundColor": "#edf4ef",
+  "enableNotifications": false,
+  "startUrl": "/?distribution=play-store",
+  "webManifestUrl": "https://REPLACE_WITH_YOUR_DOMAIN/manifest.webmanifest",
+  "iconUrl": "https://REPLACE_WITH_YOUR_DOMAIN/icons/icon-512.png",
+  "maskableIconUrl": "https://REPLACE_WITH_YOUR_DOMAIN/icons/icon-512.png",
+  "orientation": "portrait-primary",
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "minSdkVersion": 23,
+  "targetSdkVersion": 35,
+  "fallbackType": "customtabs",
+  "enableSiteSettingsShortcut": true,
+  "features": {
+    "playBilling": {
+      "enabled": true
+    }
+  },
+  "alphaDependencies": {
+    "enabled": true
+  },
+  "signingKey": {
+    "path": "release/cricket-learner-upload-key.jks",
+    "alias": "cricket-learner"
+  },
+  "fingerprints": []
+}
